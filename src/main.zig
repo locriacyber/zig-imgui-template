@@ -4,7 +4,7 @@ const c = @cImport({
     @cDefine("CIMGUI_DEFINE_ENUMS_AND_STRUCTS", "");
     // @cDefine("IMGUI_IMPL_API", "extern \"C\" __declspec(dllexport)");
     @cInclude("cimgui.h");
-    @cInclude("generator/output/cimgui_impl.h");
+    @cInclude("./cimgui_impl.h");
     // @cUndef("CIMGUI_DEFINE_ENUMS_AND_STRUCTS");
     // @cInclude("imgui_impl_glfw.h");
     // @cInclude("imgui_impl_opengl3.h");

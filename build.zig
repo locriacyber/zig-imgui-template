@@ -9,6 +9,7 @@ pub fn build(b: *Builder) void {
 
     exe.addPackagePath("glfw", "mach-glfw/src/main.zig");
     glfw.link(b, exe, .{});
+    exe.addIncludeDir("src");
     exe.addIncludeDir("cimgui");
     exe.addIncludeDir("cimgui/imgui");
     exe.addIncludeDir("cimgui/imgui/backends");
@@ -23,7 +24,6 @@ pub fn build(b: *Builder) void {
         "cimgui/cimgui.cpp",
         }, &[_][]const u8 {});
     exe.linkLibCpp();
-    exe.addIncludeDir("imgui");
 
     exe.install();
     b.default_step.dependOn(&exe.step);
