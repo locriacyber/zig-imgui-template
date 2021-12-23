@@ -267,7 +267,7 @@ pub inline fn getGUID(self: Joystick) Error![*c]const u8 {
 ///
 /// see also: joystick_userptr, glfw.Joystick.getUserPointer
 pub inline fn setUserPointer(self: Joystick, Type: anytype, pointer: Type) void {
-    c.glfwSetJoystickUserPointer(self.jid, @ptrCast(*c_void, pointer));
+    c.glfwSetJoystickUserPointer(self.jid, @ptrCast(*anyopaque, pointer));
     getError() catch {};
 }
 
