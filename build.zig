@@ -9,16 +9,18 @@ pub fn build(b: *Builder) void {
 
     exe.addPackagePath("glfw", "mach-glfw/src/main.zig");
     glfw.link(b, exe, .{});
-
+    exe.addIncludeDir("cimgui");
+    exe.addIncludeDir("cimgui/imgui");
+    exe.addIncludeDir("cimgui/imgui/backends");
     exe.addCSourceFiles(&[_][]const u8 {
-        "imgui/imgui.cpp",
-        "imgui/imgui_draw.cpp",
-        "imgui/imgui_tables.cpp",
-        "imgui/imgui_widgets.cpp",
-        "imgui/imgui_demo.cpp",
-        "imgui/cimgui/imgui_impl_glfw.cpp",
-        "imgui/cimgui/imgui_impl_opengl3.cpp",
-        "imgui/cimgui/cimgui.cpp",
+        "cimgui/imgui/imgui.cpp",
+        "cimgui/imgui/imgui_draw.cpp",
+        "cimgui/imgui/imgui_tables.cpp",
+        "cimgui/imgui/imgui_widgets.cpp",
+        "cimgui/imgui/imgui_demo.cpp",
+        "cimgui/imgui/backends/imgui_impl_glfw.cpp",
+        "cimgui/imgui/backends/imgui_impl_opengl3.cpp",
+        "cimgui/cimgui.cpp",
         }, &[_][]const u8 {});
     exe.linkLibCpp();
     exe.addIncludeDir("imgui");
@@ -32,6 +34,6 @@ pub fn build(b: *Builder) void {
         run_cmd.addArgs(args);
     }
 
-    const main_step = b.step("main", "run");
+    const main_step = b.step("run", "run");
     main_step.dependOn(&run_cmd.step);
 }
